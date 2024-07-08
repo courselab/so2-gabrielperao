@@ -5,12 +5,14 @@
  *
  *    SPDX-License-Identifier: GPL-3.0-or-later
  */
+#include "tydos.h"
 
-#ifndef BIOS2_H
-#define BIOS2_H
-
-int __attribute__((fastcall)) kread(char *);
-
-void __attribute__((fastcall)) udelay(unsigned short);
-
-#endif  /* BIOS2_H  */
+int main() {
+  char input[BUFFER_MAX_SIZE];
+  puts("Qual seu nome?");
+  gets(input);
+  puts("Hello ");
+  puts(input);
+  puts("\n");
+  return 0;
+}

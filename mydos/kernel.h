@@ -1,9 +1,9 @@
 /*
- *    SPDX-FileCopyrightText: 2024 Monaco F. J. <monaco@usp.br>
- *   
- *    SPDX-License-Identifier: GPL-3.0-or-later
+ *    SPDX-FileCopyrightText: 2021 Monaco F. J. <monaco@usp.br>
+ *    SPDX-FileCopyrightText: 2024 Gabriel Barbosa de Amorim Perão <gabrielperao@usp.br>
+ *    SPDX-FileCopyrightText: 2024 Ramon Moreira Machado <ramon1@usp.br>
  *
- *    This file is part of SYSeg, available at https://gitlab.com/monaco/syseg.
+ *    SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 #ifndef KERNEL_H
@@ -12,11 +12,11 @@
 /* This is kernel's entry function, which is called by the bootloader
    as soon as it loads the kernel from the this image. */
 
-void kmain(void);		
+void kmain(void);
 
 /* This is the command interpreter, which is invoked by the kernel as
-   soon as the boot is complete. 
-   
+   soon as the boot is complete.
+
    Our tiny command-line parser is too simple: commands are ASCII single words
    with no command line arguments (no blanks). */
 
@@ -29,6 +29,7 @@ void shell();			/* Command interpreter. */
 /* Built-in commands. */
 
 void f_help();
+void f_list();
 void f_exec();
 void f_quit();
 

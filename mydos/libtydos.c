@@ -1,9 +1,9 @@
 /*
  *    SPDX-FileCopyrightText: 2021 Monaco F. J. <monaco@usp.br>
- *   
- *    SPDX-License-Identifier: GPL-3.0-or-later
+ *    SPDX-FileCopyrightText: 2024 Gabriel Barbosa de Amorim Perão <gabrielperao@usp.br>
+ *    SPDX-FileCopyrightText: 2024 Ramon Moreira Machado <ramon1@usp.br>
  *
- *    This file is part of SYSeg, available at https://gitlab.com/monaco/syseg.
+ *    SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 /* This is a trivial user library that should be statically linked against
@@ -12,10 +12,10 @@
 
 #include "tydos.h"
 
-/* The syscall function. 
+/* The syscall function.
 
    This function is not meant to be called directly by the user programs but,
-   rahter, by the other library functions that need to invoke syscalls. */ 
+   rahter, by the other library functions that need to invoke syscalls. */
 
 int syscall(int number, int arg1, int arg2, int arg3)
 {
@@ -23,7 +23,7 @@ int syscall(int number, int arg1, int arg2, int arg3)
 
   /* Our syscall ABI uses regparm(3) calling convention (see the section on
      x86 function attributes in the GCC manual. */
-  
+
   int register bx __asm__("bx") = number; /* Syscall number (handler). */
   int register ax __asm__("ax") = arg1;	  /* First argument  in %ax.   */
   int register dx __asm__("dx") = arg2;	  /* Second argument in %dx.   */
@@ -41,4 +41,9 @@ int syscall(int number, int arg1, int arg2, int arg3)
 void puts(const char* str)
 {
   syscall (SYS_WRITE, (int) str,0,0);
+}
+
+void gets(char* buff)
+{
+  syscall (SYS_READ, (int) buff,0,0);
 }

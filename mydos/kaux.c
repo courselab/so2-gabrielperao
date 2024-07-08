@@ -1,9 +1,9 @@
 /*
- *    SPDX-FileCopyrightText: 2024 Monaco F. J. <monaco@usp.br>
- *   
- *    SPDX-License-Identifier: GPL-3.0-or-later
+ *    SPDX-FileCopyrightText: 2021 Monaco F. J. <monaco@usp.br>
+ *    SPDX-FileCopyrightText: 2024 Gabriel Barbosa de Amorim Perão <gabrielperao@usp.br>
+ *    SPDX-FileCopyrightText: 2024 Ramon Moreira Machado <ramon1@usp.br>
  *
- *    This file is part of SYSeg, available at https://gitlab.com/monaco/syseg.
+ *    SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 
@@ -17,7 +17,7 @@ short (*vram)[COLS] = (short (*)[COLS])0xb8000;
 char character_color = 0x02;	/* Default fore/background character color.*/
 
 /* Write 'string' starting at the position given by 'row' and 'col'.
-   Text is wrapped around both horizontally and vertically. 
+   Text is wrapped around both horizontally and vertically.
 
    The implementation manipulates the video-RAM rather than BIOS services.
 */
@@ -29,13 +29,13 @@ void writexy(unsigned char row, unsigned char col, const char* string)
   while (string[k])
     {
 
-      col = col % COLS;
-      row = row % ROWS;
-      
-      vram[row][col] = color_char(string[k]);
-      col++;
-      k++;
-    }
+    col = col % COLS;
+    row = row % ROWS;
+
+    vram[row][col] = color_char(string[k]);
+    col++;
+    k++;
+  }
 }
 
 /* Clear the entire screen

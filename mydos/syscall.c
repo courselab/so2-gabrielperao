@@ -1,9 +1,9 @@
 /*
- *    SPDX-FileCopyrightText: 2024 Monaco F. J. <monaco@usp.br>
- *   
- *    SPDX-License-Identifier: GPL-3.0-or-later
+ *    SPDX-FileCopyrightText: 2021 Monaco F. J. <monaco@usp.br>
+ *    SPDX-FileCopyrightText: 2024 Gabriel Barbosa de Amorim Perão <gabrielperao@usp.br>
+ *    SPDX-FileCopyrightText: 2024 Ramon Moreira Machado <ramon1@usp.br>
  *
- *    This file is part of SYSeg, available at https://gitlab.com/monaco/syseg.
+ *    SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 /* The kernel registers a syscall handler at IVT entry 0x21. */
@@ -38,5 +38,13 @@ int _tycall_ sys_invalid ()
 
 int _tycall_ sys_exit()
 {
+  return 0;
+}
+
+/* This syscall should be called to read the buffer */
+
+int _tycall_ sys_read(char* buff) {
+  kread(buff);
+  
   return 0;
 }
